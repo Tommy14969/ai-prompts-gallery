@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;600;700;800&family=Geologica:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #fff5f8;
+  --bg-secondary: #ffffff;
+  --text-primary: #1a1d2e;
+  --text-secondary: #6b7280;
+  --border-light: #ffe4ef;
+  --accent-pink: #ff6aad;
+  --accent-purple: #a855f7;
+  --accent-blue: #60a5fa;
+  --accent-cyan: #22d3ee;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans SC', 'M PLUS Rounded 1c', 'Geologica', sans-serif;
+  background: linear-gradient(135deg, #ffe4ef 0%, #f3e8ff 50%, #e0f2fe 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Heart beat animation */
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(0.9);
+  }
+  20%, 40% {
+    transform: scale(1.1);
+  }
+}
+
+/* Wiggle animation */
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% { transform: translateX(-25%) translateY(-25%) rotate(0deg); }
+  100% { transform: translateX(25%) translateY(25%) rotate(360deg); }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bubble {
+  0% {
+    transform: translateY(100%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 15s infinite linear;
+}
+
+.animate-slideIn {
+  animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-cardFadeIn {
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+/* Scrollbar - Anime style */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(135deg, #ffe4ef 0%, #f3e8ff 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ff6aad 0%, #a855f7 100%);
+  border-radius: 10px;
+  border: 3px solid #ffe4ef;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ff3d8f 0%, #9333ea 100%);
+}
+
+/* Utility classes */
+.anime-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.anime-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.anime-card:hover::before {
+  opacity: 1;
+}
+
+.anime-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.anime-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.anime-button:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Floating particles */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, rgba(255, 107, 173, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: bubble 8s infinite ease-in;
+}
+
+.particle:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.particle:nth-child(3) {
+  left: 30%;
+  animation-delay: 4s;
+}
+
+.particle:nth-child(4) {
+  left: 40%;
+  animation-delay: 6s;
+}
+
+.particle:nth-child(5) {
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.particle:nth-child(6) {
+  left: 60%;
+  animation-delay: 3s;
+}
+
+.particle:nth-child(7) {
+  left: 70%;
+  animation-delay: 5s;
+}
+
+.particle:nth-child(8) {
+  left: 80%;
+  animation-delay: 7s;
+}
+
+.particle:nth-child(9) {
+  left: 90%;
+  animation-delay: 2.5s;
+}
+
+/* Heart decorations */
+.heart-decoration {
+  position: absolute;
+  font-size: 20px;
+  opacity: 0.1;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Cute border decorations */
+.cute-border {
+  border: 3px solid transparent;
+  background-image: linear-gradient(white, white),
+                    linear-gradient(135deg, #ff6aad 0%, #a855f7 50%, #60a5fa 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Glow effects */
+.glow-pink {
+  box-shadow: 0 0 20px rgba(255, 107, 173, 0.5);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+}
